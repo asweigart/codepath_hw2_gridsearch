@@ -9,7 +9,7 @@ Completed user stories:
  * [ ] Required: User can configure advanced search filters such as: size, color, type, site
  * [ ] Required: Subsequent searches will have any filters applied to the search results
  * [X] Required: User can tap on any image in results to see the image full-screen
- * [ ] Required: User can scroll down “infinitely” to continue loading more image results (up to 8 pages)
+ * [X] Required: User can scroll down “infinitely” to continue loading more image results (up to 8 pages)
 
 Optional features:
 
@@ -25,3 +25,4 @@ Additional features:
 
  * [X] Use Parceable instead of Serializable
  * [ ] Search bar provides suggestions
+ * [ ] Use View Holder pattern

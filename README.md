@@ -1,7 +1,7 @@
 # codepath_hw2_gridsearch
 Homework 2 for Android CodePath - Grid Image Search
 
-Time spent: 14 hours
+Time spent: 15 hours
 
 Completed user stories:
 
@@ -28,3 +28,4 @@ Additional features:
  * [X] Use View Holder pattern
  * [X] Preferences save as the individual fields are changed, not on pressing a Save button.
  * [X] Show placeholder loading image.
+ * [X] Automatically close soft keyboard on search

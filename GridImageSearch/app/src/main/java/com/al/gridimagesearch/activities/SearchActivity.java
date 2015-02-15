@@ -1,5 +1,6 @@
 package com.al.gridimagesearch.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +11,7 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
@@ -115,8 +117,14 @@ public class SearchActivity extends ActionBarActivity {
 
     private void fetchSearchResults(String query, int page, boolean clearResults) {
         if (clearResults) {
-            this.imageResults.clear(); // clear the images from the array (clear out old search results)
+            aImageResult.clear(); // clear the images from the array (clear out old search results)
         }
+
+        // close soft keyboard
+        InputMethodManager imm = (InputMethodManager)getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
+
 
         AsyncHttpClient client = new AsyncHttpClient();
         String fullRequestUrl = IMAGE_SEARCH_URL + query + "&start=" + String.valueOf(page * RESULT_SIZE);

@@ -9,9 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.al.gridimagesearch.R;
+import com.al.gridimagesearch.TouchImageView;
 import com.al.gridimagesearch.models.ImageResult;
 import com.squareup.picasso.Picasso;
-import com.diegocarloslima.byakugallery.lib.TouchImageView;
 
 public class ImageDisplayActivity extends ActionBarActivity {
 
@@ -28,7 +28,7 @@ public class ImageDisplayActivity extends ActionBarActivity {
         TextView tvTitle = (TextView) findViewById(R.id.tvTitle);
 
         // populate views
-        Picasso.with(this).load(result.fullUrl).into(ivImageResult);
+        Picasso.with(this).load(result.fullUrl).placeholder(R.drawable.loading).into(ivImageResult);
         tvTitle.setText(Html.fromHtml(result.title));
     }
 

@@ -3,6 +3,10 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">#555555</item>
+
     </style>
 
+    <!-- TODO: unable to inherit the other button attrs when I try to make my own button. -->
 </resources>

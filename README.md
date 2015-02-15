@@ -17,7 +17,7 @@ Optional features:
  * [ ] Use the ActionBar SearchView or custom layout as the query box instead of an EditText
  * [ ] User can share an image to their friends or email it to themselves
  * [ ] Replace Filter Settings Activity with a lightweight modal overlay
- * [ ] Improve the user interface and experiment with image assets and/or styling and coloring
+ * [X] Improve the user interface and experiment with image assets and/or styling and coloring
  * [ ] Use the StaggeredGridView to display improve the grid of image results
  * [X] User can zoom or pan images displayed in full-screen detail view
 

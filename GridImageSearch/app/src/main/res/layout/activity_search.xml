@@ -10,8 +10,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:hint="@string/Search"
-        android:onClick="onImageSearch" />
+        android:onClick="onImageSearch"
+        android:text="@string/Search" />
 
     <EditText
         android:layout_width="wrap_content"

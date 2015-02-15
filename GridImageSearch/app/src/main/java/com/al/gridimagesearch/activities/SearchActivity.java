@@ -17,6 +17,7 @@ import com.al.gridimagesearch.R;
 import com.al.gridimagesearch.adapters.ImageResultsAdapter;
 import com.al.gridimagesearch.controllers.EndlessScrollListener;
 import com.al.gridimagesearch.models.ImageResult;
+import com.etsy.android.grid.StaggeredGridView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -32,7 +33,7 @@ public class SearchActivity extends ActionBarActivity {
     private static int RESULT_SIZE = 8;
 
     private EditText etQuery;
-    private GridView gvResults;
+    private StaggeredGridView gvResults;
     private static String IMAGE_SEARCH_URL = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&rsz=" + String.valueOf(RESULT_SIZE) + "&q=";
     private ArrayList<ImageResult> imageResults;
     private ImageResultsAdapter aImageResult;
@@ -44,7 +45,7 @@ public class SearchActivity extends ActionBarActivity {
 
         // Set up views & members
         etQuery = (EditText) findViewById(R.id.etQuery);
-        gvResults = (GridView) findViewById(R.id.gvResults);
+        gvResults = (StaggeredGridView) findViewById(R.id.gvResults);
         // set up code so that clicking on thumbnail launches full image display activity (ImageDisplayActivity)
         gvResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

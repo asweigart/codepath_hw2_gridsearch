@@ -29,3 +29,5 @@ Additional features:
  * [X] Preferences save as the individual fields are changed, not on pressing a Save button.
  * [X] Show placeholder loading image.
  * [X] Automatically close soft keyboard on search
+
+ ![Video Walkthrough](hw2.gif)

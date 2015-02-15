@@ -19,7 +19,7 @@ Optional features:
  * [ ] Replace Filter Settings Activity with a lightweight modal overlay
  * [ ] Improve the user interface and experiment with image assets and/or styling and coloring
  * [ ] Use the StaggeredGridView to display improve the grid of image results
- * [ ] User can zoom or pan images displayed in full-screen detail view
+ * [X] User can zoom or pan images displayed in full-screen detail view
 
 Additional features:
 

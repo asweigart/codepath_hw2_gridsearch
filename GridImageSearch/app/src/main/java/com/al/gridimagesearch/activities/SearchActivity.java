@@ -110,7 +110,6 @@ public class SearchActivity extends ActionBarActivity {
     public void onImageSearch(View v) {
         // Search button pressed; perform the image search based on the query text and filters.
         String query = searchView.getQuery().toString();
-        this.imageResults.clear(); // clear the images from the array (clear out old search results)
         fetchSearchResults(query, 0, true);
         //fetchSearchResults(query, 1); // TODO - Bug in EndlessScroller that I should bring up.
     }

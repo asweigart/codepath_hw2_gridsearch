@@ -181,8 +181,6 @@ public class SearchActivity extends ActionBarActivity {
 
                 JSONArray imageResultsJson = null;
                 try {
-                    //SearchActivity.this.imageResults.clear(); // clear the images from the array (clear out old search results)
-
                     imageResultsJson = response.getJSONObject("responseData").getJSONArray("results");
                     aImageResult.addAll(ImageResult.fromJSONArray(imageResultsJson)); // populate with ImageResult objects
                 } catch (JSONException e) {
@@ -194,7 +192,7 @@ public class SearchActivity extends ActionBarActivity {
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 // failed to do image search
                 super.onFailure(statusCode, headers, throwable, errorResponse);
-                Toast.makeText(getApplicationContext(), getResources().getString(R.string.Unable_to_do_image_search_right_now), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.No_internet_connection_right_now), Toast.LENGTH_SHORT).show();
             }
         });
     }

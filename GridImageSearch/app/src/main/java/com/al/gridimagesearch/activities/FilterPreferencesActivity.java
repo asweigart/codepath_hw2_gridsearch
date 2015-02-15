@@ -57,7 +57,7 @@ public class FilterPreferencesActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_preferences);
 
-        getSupportActionBar().hide();
+        getSupportActionBar().hide(); // no action bar on this activity needed.
 
         // find and store the views
         spImageSize = (Spinner) findViewById(R.id.spImageSize);

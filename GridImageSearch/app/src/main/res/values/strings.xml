@@ -2,9 +2,11 @@
     <string name="app_name">Google Image Search</string>
 
     <string name="action_settings">Settings</string>
+    <string name="action_share">Share</string>
     <string name="search_prompt">Enter search query</string>
     <string name="Search">Search</string>
-    <string name="Unable_to_do_image_search_right_now">Unable to do image search right now.</string>
+    <string name="No_internet_connection_right_now">No internet connection right now.</string>
+    <string name="Failed_to_share_this_image">Failed to share this image.</string>
     <string name="title_activity_image_display">Full Image</string>
     <string name="title_activity_filter_preferences">FilterPreferencesActivity</string>
 

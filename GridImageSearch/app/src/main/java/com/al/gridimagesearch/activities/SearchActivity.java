@@ -2,8 +2,10 @@ package com.al.gridimagesearch.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,7 +34,7 @@ import java.util.ArrayList;
 public class SearchActivity extends ActionBarActivity {
     private static int RESULT_SIZE = 8;
 
-    private EditText etQuery;
+    private SearchView searchView;
     private StaggeredGridView gvResults;
     private static String IMAGE_SEARCH_URL = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&rsz=" + String.valueOf(RESULT_SIZE) + "&q=";
     private ArrayList<ImageResult> imageResults;
@@ -44,7 +46,6 @@ public class SearchActivity extends ActionBarActivity {
         setContentView(R.layout.activity_search);
 
         // Set up views & members
-        etQuery = (EditText) findViewById(R.id.etQuery);
         gvResults = (StaggeredGridView) findViewById(R.id.gvResults);
         // set up code so that clicking on thumbnail launches full image display activity (ImageDisplayActivity)
         gvResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -64,7 +65,7 @@ public class SearchActivity extends ActionBarActivity {
         gvResults.setOnScrollListener(new EndlessScrollListener() {
             @Override
             public void onLoadMore(int page, int totalItemsCount) {
-                fetchSearchResults(etQuery.getText().toString(), page);
+                fetchSearchResults(searchView.getQuery().toString(), page, false);
             }
         });
     }
@@ -74,6 +75,20 @@ public class SearchActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_search, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                fetchSearchResults(s, 0, true);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
         return true;
     }
 
@@ -94,13 +109,17 @@ public class SearchActivity extends ActionBarActivity {
 
     public void onImageSearch(View v) {
         // Search button pressed; perform the image search based on the query text and filters.
-        String query = etQuery.getText().toString();
+        String query = searchView.getQuery().toString();
         this.imageResults.clear(); // clear the images from the array (clear out old search results)
-        fetchSearchResults(query, 0);
+        fetchSearchResults(query, 0, true);
         //fetchSearchResults(query, 1); // TODO - Bug in EndlessScroller that I should bring up.
     }
 
-    private void fetchSearchResults(String query, int page) {
+    private void fetchSearchResults(String query, int page, boolean clearResults) {
+        if (clearResults) {
+            this.imageResults.clear(); // clear the images from the array (clear out old search results)
+        }
+
         AsyncHttpClient client = new AsyncHttpClient();
         String fullRequestUrl = IMAGE_SEARCH_URL + query + "&start=" + String.valueOf(page * RESULT_SIZE);
 

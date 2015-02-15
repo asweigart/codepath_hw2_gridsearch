@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.al.gridimagesearch.R;
-import com.al.gridimagesearch.TouchImageView;
+import com.al.gridimagesearch.views.TouchImageView;
 import com.al.gridimagesearch.models.ImageResult;
 import com.squareup.picasso.Picasso;
 

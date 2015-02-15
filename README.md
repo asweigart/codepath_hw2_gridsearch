@@ -1,7 +1,7 @@
 # codepath_hw2_gridsearch
 Homework 2 for Android CodePath - Grid Image Search
 
-Time spent: 11 hours
+Time spent: 14 hours
 
 Completed user stories:
 
@@ -17,7 +17,7 @@ Optional features:
  * [X] Robust error handling, check if internet is available, handle error cases, network failures
  * [X] Use the ActionBar SearchView or custom layout as the query box instead of an EditText
  * [X] User can share an image to their friends or email it to themselves
- * [ ] Replace Filter Settings Activity with a lightweight modal overlay
+ * [X] Replace Filter Settings Activity with a lightweight modal overlay
  * [X] Improve the user interface and experiment with image assets and/or styling and coloring
  * [X] Use the StaggeredGridView to display improve the grid of image results
  * [X] User can zoom or pan images displayed in full-screen detail view
@@ -25,6 +25,6 @@ Optional features:
 Additional features:
 
  * [X] Use Parceable instead of Serializable
- * [ ] Search bar provides suggestions
  * [X] Use View Holder pattern
  * [X] Preferences save as the individual fields are changed, not on pressing a Save button.
+ * [X] Show placeholder loading image.

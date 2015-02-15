@@ -2,17 +2,15 @@ package com.al.gridimagesearch.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.Toast;
 
 import com.al.gridimagesearch.R;
@@ -124,9 +122,9 @@ public class SearchActivity extends ActionBarActivity {
         String fullRequestUrl = IMAGE_SEARCH_URL + query + "&start=" + String.valueOf(page * RESULT_SIZE);
 
         // Get the preferences and append the url string for them.
-        SharedPreferences mSettings = getApplicationContext().getSharedPreferences(FilterPreferencesActivity.SETTINGS, 0);
-        if (mSettings.getInt(FilterPreferencesActivity.IMAGE_SIZE_SETTING, FilterPreferencesActivity.NO_INT_SETTING) != FilterPreferencesActivity.NO_INT_SETTING) {
-            int sizePref = mSettings.getInt(FilterPreferencesActivity.IMAGE_SIZE_SETTING, 0);
+        SharedPreferences mSettings = getApplicationContext().getSharedPreferences(SettingsFragment.SETTINGS, 0);
+        if (mSettings.getInt(SettingsFragment.IMAGE_SIZE_SETTING, SettingsFragment.NO_INT_SETTING) != SettingsFragment.NO_INT_SETTING) {
+            int sizePref = mSettings.getInt(SettingsFragment.IMAGE_SIZE_SETTING, 0);
             if (sizePref == 1) {
                 fullRequestUrl += "&imgsz=icon";
             } else if (sizePref == 2) {
@@ -144,37 +142,37 @@ public class SearchActivity extends ActionBarActivity {
             }
         }
 
-        if (mSettings.getInt(FilterPreferencesActivity.IMAGE_COLOR_SETTING, FilterPreferencesActivity.NO_INT_SETTING) != FilterPreferencesActivity.NO_INT_SETTING) {
-            int colorPref = mSettings.getInt(FilterPreferencesActivity.IMAGE_COLOR_SETTING, 0);
+        if (mSettings.getInt(SettingsFragment.IMAGE_COLOR_SETTING, SettingsFragment.NO_INT_SETTING) != SettingsFragment.NO_INT_SETTING) {
+            int colorPref = mSettings.getInt(SettingsFragment.IMAGE_COLOR_SETTING, 0);
             if (colorPref == 1) {
                 fullRequestUrl += "&imgcolor=black";
             } else if (colorPref == 2) {
                 fullRequestUrl += "&imgcolor=blue";
             } else if (colorPref == 3) {
                 fullRequestUrl += "&imgcolor=brown";
-            } else if (colorPref == 3) {
-                fullRequestUrl += "&imgcolor=gray";
             } else if (colorPref == 4) {
-                fullRequestUrl += "&imgcolor=green";
+                fullRequestUrl += "&imgcolor=gray";
             } else if (colorPref == 5) {
-                fullRequestUrl += "&imgcolor=orange";
+                fullRequestUrl += "&imgcolor=green";
             } else if (colorPref == 6) {
-                fullRequestUrl += "&imgcolor=pink";
+                fullRequestUrl += "&imgcolor=orange";
             } else if (colorPref == 7) {
-                fullRequestUrl += "&imgcolor=purple";
+                fullRequestUrl += "&imgcolor=pink";
             } else if (colorPref == 8) {
-                fullRequestUrl += "&imgcolor=red";
+                fullRequestUrl += "&imgcolor=purple";
             } else if (colorPref == 9) {
-                fullRequestUrl += "&imgcolor=teal";
+                fullRequestUrl += "&imgcolor=red";
             } else if (colorPref == 10) {
-                fullRequestUrl += "&imgcolor=white";
+                fullRequestUrl += "&imgcolor=teal";
             } else if (colorPref == 11) {
+                fullRequestUrl += "&imgcolor=white";
+            } else if (colorPref == 12) {
                 fullRequestUrl += "&imgcolor=yellow";
             }
         }
 
-        if (mSettings.getInt(FilterPreferencesActivity.IMAGE_TYPE_SETTING, FilterPreferencesActivity.NO_INT_SETTING) != FilterPreferencesActivity.NO_INT_SETTING) {
-            int typePref = mSettings.getInt(FilterPreferencesActivity.IMAGE_TYPE_SETTING, 0);
+        if (mSettings.getInt(SettingsFragment.IMAGE_TYPE_SETTING, SettingsFragment.NO_INT_SETTING) != SettingsFragment.NO_INT_SETTING) {
+            int typePref = mSettings.getInt(SettingsFragment.IMAGE_TYPE_SETTING, 0);
             if (typePref == 1) {
                 fullRequestUrl += "&imgtype=face";
             } else if (typePref == 2) {
@@ -186,8 +184,8 @@ public class SearchActivity extends ActionBarActivity {
             }
         }
 
-        if (!mSettings.getString(FilterPreferencesActivity.IMAGE_SITE_SETTING, FilterPreferencesActivity.NO_STRING_SETTING).equals(FilterPreferencesActivity.NO_STRING_SETTING)) {
-            String sitePref = mSettings.getString(FilterPreferencesActivity.IMAGE_SITE_SETTING, "");
+        if (!mSettings.getString(SettingsFragment.IMAGE_SITE_SETTING, SettingsFragment.NO_STRING_SETTING).equals(SettingsFragment.NO_STRING_SETTING)) {
+            String sitePref = mSettings.getString(SettingsFragment.IMAGE_SITE_SETTING, "");
             if (!sitePref.equals("")) {
                 fullRequestUrl += "&as_sitesearch=" + sitePref;
             }
@@ -217,7 +215,12 @@ public class SearchActivity extends ActionBarActivity {
     }
 
     public void onSettingsAction(MenuItem mi) {
+        /*
         Intent i = new Intent(this, FilterPreferencesActivity.class);
         startActivity(i);
+        */
+        FragmentManager fm = getSupportFragmentManager();
+        SettingsFragment editNameDialog = SettingsFragment.newInstance();
+        editNameDialog.show(fm, "fragment_settings");
     }
 }

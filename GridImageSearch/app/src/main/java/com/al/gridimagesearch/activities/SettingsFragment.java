@@ -1,22 +1,21 @@
 package com.al.gridimagesearch.activities;
 
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.al.gridimagesearch.R;
 
-public class FilterPreferencesActivity extends ActionBarActivity {
+
+public class SettingsFragment extends DialogFragment {
     private Spinner spImageSize;
     private Spinner spImageType;
     private Spinner spColorFilter;
@@ -52,20 +51,30 @@ public class FilterPreferencesActivity extends ActionBarActivity {
     public static String IMAGE_COLOR_SETTING = "imageColor";
     public static String IMAGE_SITE_SETTING = "imageSite";
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_filter_preferences);
 
-        getSupportActionBar().hide(); // no action bar on this activity needed.
+    public SettingsFragment() {
+        // Empty constructor required for DialogFragment
+    }
+
+    public static SettingsFragment newInstance() {
+        return new SettingsFragment();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_settings, container);
+        getDialog().setTitle(getResources().getString(R.string.Advanced_Search_Options));
+
+
 
         // find and store the views
-        spImageSize = (Spinner) findViewById(R.id.spImageSize);
-        spImageType = (Spinner) findViewById(R.id.spImageType);
-        spColorFilter = (Spinner) findViewById(R.id.spColorFilter);
-        etSiteFilter = (EditText) findViewById(R.id.etSiteFilter);
+        spImageSize = (Spinner) view.findViewById(R.id.spImageSize);
+        spImageType = (Spinner) view.findViewById(R.id.spImageType);
+        spColorFilter = (Spinner) view.findViewById(R.id.spColorFilter);
+        etSiteFilter = (EditText) view.findViewById(R.id.etSiteFilter);
 
-        mSettings = getApplicationContext().getSharedPreferences(SETTINGS, 0);
+        mSettings = getActivity().getSharedPreferences(SETTINGS, 0);
         SharedPreferences.Editor editor = mSettings.edit();
 
         if (mSettings.getInt(IMAGE_SIZE_SETTING, NO_INT_SETTING) == NO_INT_SETTING) {
@@ -99,7 +108,7 @@ public class FilterPreferencesActivity extends ActionBarActivity {
         spImageSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences(SETTINGS, 0).edit();
+                SharedPreferences.Editor editor = getActivity().getSharedPreferences(SETTINGS, 0).edit();
                 editor.putInt(IMAGE_SIZE_SETTING, position);
                 editor.commit();
             }
@@ -111,7 +120,7 @@ public class FilterPreferencesActivity extends ActionBarActivity {
         spImageType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences(SETTINGS, 0).edit();
+                SharedPreferences.Editor editor = getActivity().getSharedPreferences(SETTINGS, 0).edit();
                 editor.putInt(IMAGE_TYPE_SETTING, position);
                 editor.commit();
             }
@@ -123,7 +132,7 @@ public class FilterPreferencesActivity extends ActionBarActivity {
         spColorFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences(SETTINGS, 0).edit();
+                SharedPreferences.Editor editor = getActivity().getSharedPreferences(SETTINGS, 0).edit();
                 editor.putInt(IMAGE_COLOR_SETTING, position);
                 editor.commit();
             }
@@ -138,7 +147,7 @@ public class FilterPreferencesActivity extends ActionBarActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences(SETTINGS, 0).edit();
+                SharedPreferences.Editor editor = getActivity().getSharedPreferences(SETTINGS, 0).edit();
                 editor.putString(IMAGE_SITE_SETTING, s.toString());
                 editor.commit();
             }
@@ -146,43 +155,7 @@ public class FilterPreferencesActivity extends ActionBarActivity {
             @Override
             public void afterTextChanged(Editable s) { }
         });
-    }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_filter_preferences, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void onResetClick(View v) {
-        // reset all the settings back to the "All" defaults.
-        SharedPreferences.Editor editor = mSettings.edit();
-        editor.putInt(IMAGE_SIZE_SETTING, 0);
-        editor.putInt(IMAGE_TYPE_SETTING, 0);
-        editor.putInt(IMAGE_COLOR_SETTING, 0);
-        editor.putString(IMAGE_SITE_SETTING, "");
-        editor.commit();
-
-        spImageSize.setSelection(0);
-        spColorFilter.setSelection(0);
-        spImageType.setSelection(0);
-        etSiteFilter.setText("");
+        return view;
     }
 }

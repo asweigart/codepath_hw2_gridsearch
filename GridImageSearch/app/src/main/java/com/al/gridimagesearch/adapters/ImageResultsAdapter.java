@@ -48,7 +48,7 @@ public class ImageResultsAdapter extends ArrayAdapter<ImageResult> {
 
         // populate the views
         vh.ivImage.setImageResource(0); // clear the image view
-        Picasso.with(getContext()).load(imageRes.thumbUrl).into(vh.ivImage);
+        Picasso.with(getContext()).load(imageRes.thumbUrl).placeholder(R.drawable.loading).into(vh.ivImage);
         vh.tvTitle.setText(Html.fromHtml(imageRes.title));
 
         return convertView;

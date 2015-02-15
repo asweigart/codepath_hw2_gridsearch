@@ -26,6 +26,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.al.gridimagesearch.activities.SearchActivity" />
         </activity>
+        <activity
+            android:name=".activities.FilterPreferencesActivity"
+            android:label="@string/title_activity_filter_preferences"
+            android:parentActivityName=".activities.SearchActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.al.gridimagesearch.activities.SearchActivity" />
+        </activity>
     </application>
 
 </manifest>

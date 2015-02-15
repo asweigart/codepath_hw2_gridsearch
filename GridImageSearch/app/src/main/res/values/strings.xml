@@ -6,4 +6,52 @@
     <string name="Search">Search</string>
     <string name="Unable_to_do_image_search_right_now">Unable to do image search right now.</string>
     <string name="title_activity_image_display">Full Image</string>
+    <string name="title_activity_filter_preferences">FilterPreferencesActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="Advanced_Search_Options">Advanced Search Options</string>
+    <string name="Image_size">Image size</string>
+    <string name="Color_filter">Color filter</string>
+    <string name="EG_Imgur_com">e.g. Imgur.com</string>
+    <string name="Image_type">Image type</string>
+    <string name="Site_filter">Site filter</string>
+    <string name="Save">Save</string>
+    <string name="Reset">Reset</string>
+
+    <string-array name="image_sizes_array">
+        <item>All Sizes</item>
+        <item>Icon</item>
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+        <item>X Large</item>
+        <item>XX Large</item>
+        <item>Huge</item>
+    </string-array>
+
+    <string-array name="image_types_array">
+        <item>All Types</item>
+        <item>Face</item>
+        <item>Photo</item>
+        <item>Clipart</item>
+        <item>Line Art</item>
+    </string-array>
+
+    <string-array name="image_colors_array">
+        <item>All Colors</item>
+        <item>Black</item>
+        <item>Blue</item>
+        <item>Brown</item>
+        <item>Gray</item>
+        <item>Green</item>
+        <item>Orange</item>
+        <item>Pink</item>
+        <item>Purple</item>
+        <item>Red</item>
+        <item>Teal</item>
+        <item>White</item>
+        <item>Yellow</item>
+    </string-array>
+
+
 </resources>
